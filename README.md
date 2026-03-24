@@ -8,7 +8,7 @@ This repository provides AI assistant **Skills** for Tencent Map development in 
 
 | Skill | Description |
 |-------|-------------|
-| **tmap-miniprogram** | Tencent Map WeChat Mini Program: Complete guidance for mini program map development, including map component usage, location services, marker management, route planning, geocoding, POI search, marker clustering, and visualization layers. For WeChat Mini Program map development using the built-in map component and Tencent Location Service SDK. |
+| **tencentmap-miniprogram-skill** | Tencent Map WeChat Mini Program: Complete guidance for mini program map development, including map component usage, location services, marker management, route planning, geocoding, POI search, marker clustering, and visualization layers. For WeChat Mini Program map development using the built-in map component and Tencent Location Service SDK. |
 
 ## How to Use
 
@@ -21,34 +21,34 @@ cd TencentMap_miniprogram_skills
 
 ### 2. Register the skill with your AI assistant
 
-Link or copy the `tmap-miniprogram` directory into your environment's skills folder so the AI can load its docs during conversations.
+Link or copy the `tencentmap-miniprogram-skill` directory into your environment's skills folder so the AI can load its docs during conversations.
 
 **Claude Desktop (local)**
 
 - Skills directory is usually: `~/.claude/skills/`
 - Register via symlink (recommended):
   ```bash
-  ln -sfn "$(pwd)/tmap-miniprogram" ~/.claude/skills/tmap-miniprogram
+  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.claude/skills/tencentmap-miniprogram-skill
   ```
-- Or copy the `tmap-miniprogram` folder into `~/.claude/skills/`.
+- Or copy the `tencentmap-miniprogram-skill` folder into `~/.claude/skills/`.
 
 **Cursor**
 
 - Skills directory is usually: `~/.cursor/skills/`
 - Register via symlink (recommended):
   ```bash
-  ln -sfn "$(pwd)/tmap-miniprogram" ~/.cursor/skills/tmap-miniprogram
+  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.cursor/skills/tencentmap-miniprogram-skill
   ```
-- Or copy the `tmap-miniprogram` folder into `~/.cursor/skills/`.
+- Or copy the `tencentmap-miniprogram-skill` folder into `~/.cursor/skills/`.
 
 **CodeBuddy**
 
 - Skills directory is usually: `~/.codebuddy/skills/`
 - Register via symlink (recommended):
   ```bash
-  ln -sfn "$(pwd)/tmap-miniprogram" ~/.codebuddy/skills/tmap-miniprogram
+  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.codebuddy/skills/tencentmap-miniprogram-skill
   ```
-- Or copy the `tmap-miniprogram` folder into `~/.codebuddy/skills/`.
+- Or copy the `tencentmap-miniprogram-skill` folder into `~/.codebuddy/skills/`.
 
 ### 3. Use it in chat
 
@@ -58,7 +58,7 @@ When your questions mention "Tencent Map", "WeChat Mini Program", "mini program 
 
 ```
 .
-├── tmap-miniprogram/          # Tencent Map Mini Program skill
+├── tencentmap-miniprogram-skill/          # Tencent Map Mini Program skill
 │   ├── SKILL.md               # Skill entry and index
 │   ├── quick_start_and_best_practices.md  # Quick start guide and best practices
 │   ├── assets/                # Example projects and SDK libraries
