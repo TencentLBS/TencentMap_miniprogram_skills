@@ -73,7 +73,3 @@ When your questions mention "Tencent Map", "WeChat Mini Program", "mini program 
 ```
 
 `SKILL.md` lists all reference files so the AI can load them as needed.
-
-## License
-
-If a skill declares a license (e.g. MIT), that applies to that skill; the repo may use the same license.

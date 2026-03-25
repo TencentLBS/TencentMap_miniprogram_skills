@@ -74,6 +74,3 @@ cd TencentMap_miniprogram_skills
 
 `SKILL.md` 中会列出其下所有参考文档，便于 AI 按需读取。
 
-## 许可
-
-Skill 内若声明了 license（如 MIT），以该声明为准；仓库整体可沿用相同许可。
