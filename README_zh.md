@@ -21,34 +21,34 @@ cd tencentmap-miniprogram-skill
 
 ### 2. 将 Skill 注册到你的 AI 助手
 
-把 `tencentmap-miniprogram-skill` 目录链接或复制到当前环境对应的 skills 目录，这样 AI 在对话时会自动读取这些文档。
+把当前仓库目录链接或复制到当前环境对应的 skills 目录，这样 AI 在对话时会自动读取这些文档。
 
 **Claude Desktop（本地）**
 
 - Skills 目录一般为：`~/.claude/skills/`
 - 注册（软链，推荐）：
   ```bash
-  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.claude/skills/tencentmap-miniprogram-skill
+  ln -sfn "$(pwd)" ~/.claude/skills/tencentmap-miniprogram-skill
   ```
-- 或直接把 `tencentmap-miniprogram-skill` 文件夹复制到 `~/.claude/skills/` 下。
+- 或直接把本仓库文件夹复制到 `~/.claude/skills/` 下，并重命名为 `tencentmap-miniprogram-skill`。
 
 **Cursor**
 
 - Skills 目录一般为：`~/.cursor/skills/`
 - 注册（软链，推荐）：
   ```bash
-  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.cursor/skills/tencentmap-miniprogram-skill
+  ln -sfn "$(pwd)" ~/.cursor/skills/tencentmap-miniprogram-skill
   ```
-- 或直接把 `tencentmap-miniprogram-skill` 文件夹复制到 `~/.cursor/skills/` 下。
+- 或直接把本仓库文件夹复制到 `~/.cursor/skills/` 下，并重命名为 `tencentmap-miniprogram-skill`。
 
 **CodeBuddy**
 
 - Skills 目录一般为：`~/.codebuddy/skills/`
 - 注册（软链，推荐）：
   ```bash
-  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.codebuddy/skills/tencentmap-miniprogram-skill
+  ln -sfn "$(pwd)" ~/.codebuddy/skills/tencentmap-miniprogram-skill
   ```
-- 或直接把 `tencentmap-miniprogram-skill` 文件夹复制到 `~/.codebuddy/skills/` 下。
+- 或直接把本仓库文件夹复制到 `~/.codebuddy/skills/` 下，并重命名为 `tencentmap-miniprogram-skill`。
 
 ### 3. 在对话中使用
 
@@ -58,17 +58,18 @@ cd tencentmap-miniprogram-skill
 
 ```
 .
-├── tencentmap-miniprogram-skill/          # 腾讯地图小程序开发技能
-│   ├── SKILL.md               # Skill 入口与索引
-│   ├── quick_start_and_best_practices.md  # 快速开始指南与最佳实践
-│   ├── assets/                # 示例项目和 SDK 库
-│   │   ├── examples/          # 完整的小程序示例项目
-│   │   └── libs/              # 腾讯位置服务 SDK
-│   └── references/            # API 参考文档
-│       ├── map_component_guide.md          # 地图组件文档
-│       ├── mapContext_api/     # MapContext API 文档（32个API）
-│       ├── wx_location_api/    # 微信位置 API 文档（12个API）
-│       └── lbs_service_guide/  # 腾讯位置服务文档（9个API）
+├── SKILL.md               # Skill 入口与索引
+├── quick_start_and_best_practices.md  # 快速开始指南与最佳实践
+├── tempkey-guide.md       # 临时体验 Key 申请流程
+├── scripts/               # 辅助脚本（临时 Key 申请等）
+├── assets/                # 示例项目和 SDK 库
+│   ├── examples/          # 完整的小程序示例项目
+│   └── libs/              # 腾讯位置服务 SDK
+├── references/            # API 参考文档
+│   ├── map_component_guide.md          # 地图组件文档
+│   ├── mapContext_api/     # MapContext API 文档（32个API）
+│   ├── wx_location_api/    # 微信位置 API 文档（12个API）
+│   └── lbs_service_guide/  # 腾讯位置服务文档（9个API）
 └── README.md
 ```
 

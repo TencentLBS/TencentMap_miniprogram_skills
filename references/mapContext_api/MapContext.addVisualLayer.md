@@ -1,5 +1,10 @@
 # MapContext.addVisualLayer(Object object)
 
+> **⚠️ 前置要求（必须满足，否则真机调用失败）**：
+> - `layerId` 为用户在腾讯位置服务控制台创建的可视化图层 ID（创建入口：https://lbs.qq.com/dev/console/layers/layerEdit ），**agent 不得编造或使用占位符**，编写代码前必须向用户确认 layerId；
+> - map 组件需配置 `subkey` 参数，且 subkey 须与 layerId 绑定；
+> - 需在[图层绑定页面](https://lbs.qq.com/dev/console/layers/layerBind)授权当前小程序 APPID。
+
 > 基础库 2.20.1 开始支持，低版本需做兼容处理。
 
 > **以 Promise 风格 调用**：不支持
@@ -12,7 +17,11 @@
 
 ## 功能描述
 
-添加可视化图层。需要刷新时，interval 可设置的最小值为 15 s。
+添加可视化图层。需要刷新时，interval 可设置的最小值为 15 s。工具侧暂未支持。
+
+> **注意事项**：
+> - 使用前需在 map 组件上配置 `subkey` 参数，且 `subkey` 须与 `layerId` 绑定。
+> - 需在 [图层绑定页面](https://lbs.qq.com/dev/console/layers/layerBind) 授权当前小程序 APPID，否则真机调用会失败。
 
 ## 参数
 

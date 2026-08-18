@@ -62,15 +62,20 @@ MapContext 通过 `id` 跟一个 map 组件绑定，操作对应的 map 组件�
 
 ### MapContext.addGroundOverlay(Object object)
 
-创建自定义图片图层，图片会随着地图缩放而缩放。
+创建自定义图片图层，图片会随着地图缩放而缩放。工具侧暂未支持。
 
 ### MapContext.addVisualLayer(Object object)
 
-添加可视化图层。需要刷新时，interval 可设置的最小值为 15 s。
+添加可视化图层。需要刷新时，interval 可设置的最小值为 15 s。工具侧暂未支持。
+
+> **注意事项**：
+> - `layerId` 为控制台创建的可视化图层 ID（创建入口：https://lbs.qq.com/dev/console/layers/layerEdit ），**不得编造或使用占位符**，编写代码前须向用户确认。
+> - 使用前需在 map 组件上配置 `subkey` 参数，且 `subkey` 须与 `layerId` 绑定。
+> - 需在 [图层绑定页面](https://lbs.qq.com/dev/console/layers/layerBind) 授权当前小程序 APPID，否则真机调用会失败。
 
 ### MapContext.removeVisualLayer(Object object)
 
-移除可视化图层。
+移除可视化图层。工具侧暂未支持。
 
 ### MapContext.executeVisualLayerCommand(Object object)
 
@@ -90,11 +95,11 @@ MapContext 通过 `id` 跟一个 map 组件绑定，操作对应的 map 组件�
 
 ### MapContext.updateGroundOverlay(Object object)
 
-更新自定义图片图层。
+更新自定义图片图层。工具侧暂未支持。
 
 ### MapContext.removeGroundOverlay(Object object)
 
-移除自定义图片图层。
+移除自定义图片图层。工具侧暂未支持。
 
 ### MapContext.toScreenLocation(Object object)
 

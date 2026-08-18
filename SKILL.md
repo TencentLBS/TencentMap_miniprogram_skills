@@ -2,7 +2,7 @@
 name: tencentmap-miniprogram-skill
 description: 
   此技能提供微信小程序地图开发的完整指导，包括地图组件使用、位置服务、标记点管理、路线规划、地理编码、POI搜索、点聚合和可视化图层等功能。当用户需求涉及微信小程序地图功能开发（如 map 组件、marker、callout、polyline、polygon、circle、地图、点标记、折线、多边形、圆形、弧线、定位、导航、路线规划、POI搜索、地理编码、点聚合、热力图、腾讯地图 SDK 等）时，应加载此技能。适用平台：微信小程序。
-version: 1.0.2
+version: 1.0.4
 ---
 
 # 腾讯地图小程序开发技能
@@ -155,14 +155,41 @@ version: 1.0.2
 当用户询问小程序地图相关问题时，首先明确：
 - **功能类型**：地图显示、定位、标记点、路线规划、搜索、地图控制等
 - **平台**：微信小程序
-- **是否需要后端服务**：判断是否需要调用腾讯位置服务API
+- **是否需要后端服务**：判断是否需要调用腾讯位置服务API（POI搜索、路线规划、地理编码等）
 
-### 2. 查询 API 文档
+### 2. Key 处理（需要后端服务时）
+
+按此顺序自动获取 Key：`Client(key=...)` → 已保存的 Key。各来源的 Key 会全部进入候选池。
+
+1. **用户提供 Key**——先调用 `client.save_key("<key>")` 保存到本地配置，再执行主任务。保存后该 Key 自动进入候选池首位，后续请求无需再传。
+2. **无可用 Key**——读取 `tempkey-guide.md`，引导用户申请临时体验 Key。
+3. **Key 报错**——调用 `client.switch_key()` 轮询候选池切换到下一个可用 Key，并告知用户切换情况；全部不可用时，说明每个 Key 的失败原因与修正方式。
+
+### 2.5 前置检查：可视化图层 layerId（涉及可视化图层时）
+
+当用户需求涉及**可视化图层接口**（`MapContext.addVisualLayer` / `MapContext.removeVisualLayer` / `MapContext.executeVisualLayerCommand`）时：
+
+1. **首先检查用户是否已提供 layerId**。layerId 是可视化图层 ID，由用户在腾讯位置服务控制台创建获得，**无法猜测或凭空生成**。
+2. **用户未提供 layerId → 必须先向用户询问获取，不得擅自使用占位符或编造值**。展示以下话术：
+
+   > 可视化图层需要 `layerId`（可视化图层 ID），在腾讯位置服务控制台创建图层后获得：
+   > - 创建可视化图层（获得 layerId）：https://lbs.qq.com/dev/console/layers/layerEdit
+   > - 图层创建后还需满足两个前置条件：
+   >   1. map 组件需配置 `subkey` 参数，且该 subkey 与 layerId 绑定；
+   >   2. 需在[图层绑定页面](https://lbs.qq.com/dev/console/layers/layerBind)授权当前小程序 APPID，否则真机调用会失败。
+   >
+   > 请提供您的 layerId（以及已绑定它的 subkey，若与默认不同）。
+
+3. **用户提供 layerId 后**：确认 `subkey` 已配置、告知用户在图层绑定页面完成 APPID 授权（如未完成），再进入代码编写。
+4. **代码中不得硬编码占位符**（如 `YOUR_LAYER_ID`），应使用用户提供的实际值。
+
+### 3. 查询 API 文档
 
 根据需求类型读取对应的 references 文件：
 
 - **地图显示/组件相关** → 读取 `references/map_component_guide.md`
 - **地图控制/MapContext** → 读取 `references/mapContext_api/` 下对应文件
+- **可视化图层** → 读取 `references/mapContext_api/MapContext.addVisualLayer.md`、`MapContext.removeVisualLayer.md`、`MapContext.executeVisualLayerCommand.md`、`MapContext.on.md`（visualLayerEvent 事件）
 - **定位和用户位置相关** → 读取 `references/wx_location_api/` 下对应文件
 - **LBS后端服务** → 读取 `references/lbs_service_guide/` 下对应文件
 
@@ -171,13 +198,14 @@ version: 1.0.2
 grep -n "marker\|标记点" references/map_component_guide.md
 ```
 
-### 3. 查找示例代码
+### 4. 查找示例代码
 
 根据需求在 `assets/examples/` 目录查找对应示例：
 
 - **定位功能** → `assets/examples/minicode-location/`
 - **标记点功能** → `assets/examples/minicode-marker/`
 - **点聚合功能** → `assets/examples/minicode-markerCluster/`
+- **可视化图层** → 暂无对应示例项目，以 `references/mapContext_api/` 下的 addVisualLayer 文档为准
 
 读取示例代码的关键文件：
 ```bash
@@ -188,7 +216,7 @@ cat assets/examples/minicode-marker/index/index.wxml
 cat assets/examples/minicode-marker/index/index.js
 ```
 
-### 4. 提供解决方案
+### 5. 提供解决方案
 
 根据文档和示例，为用户提供：
 - 完整的代码示例（WXML + JS + WXSS）
@@ -247,9 +275,7 @@ cat assets/examples/minicode-marker/index/index.js
 
 ### 腾讯位置服务 SDK
 
-1. **申请Key**：
-   - 前往官网注册正式 Key：https://lbs.qq.com/dev/console/key/manage
-   - 或通过 tempkey 流程申请临时体验 Key（手机验证，14 天有效），用户同意后读取 `tempkey-guide.md` 按其中步骤执行
+1. **申请Key**：读取 `tempkey-guide.md` 按其中步骤执行
 
 2. **商业授权**：
    - 商业使用需要授权（政府公共事务及公益组织除外）
@@ -281,7 +307,7 @@ cat assets/examples/minicode-marker/index/index.js
    - 及时移除不需要的图层和覆盖物
    - 页面卸载时清理地图资源
 
-详细的快速开始指南、常见场景和最佳实践，参见 `references/quick_start_and_best_practices.md`。
+详细的快速开始指南、常见场景和最佳实践，参见 `quick_start_and_best_practices.md`。
 
 ## 相关链接
 

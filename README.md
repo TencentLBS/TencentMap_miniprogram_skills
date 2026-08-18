@@ -21,34 +21,34 @@ cd tencentmap-miniprogram-skill
 
 ### 2. Register the skill with your AI assistant
 
-Link or copy the `tencentmap-miniprogram-skill` directory into your environment's skills folder so the AI can load its docs during conversations.
+Link or copy this repo directory into your environment's skills folder so the AI can load its docs during conversations.
 
 **Claude Desktop (local)**
 
 - Skills directory is usually: `~/.claude/skills/`
 - Register via symlink (recommended):
   ```bash
-  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.claude/skills/tencentmap-miniprogram-skill
+  ln -sfn "$(pwd)" ~/.claude/skills/tencentmap-miniprogram-skill
   ```
-- Or copy the `tencentmap-miniprogram-skill` folder into `~/.claude/skills/`.
+- Or copy this repo folder into `~/.claude/skills/` and rename it to `tencentmap-miniprogram-skill`.
 
 **Cursor**
 
 - Skills directory is usually: `~/.cursor/skills/`
 - Register via symlink (recommended):
   ```bash
-  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.cursor/skills/tencentmap-miniprogram-skill
+  ln -sfn "$(pwd)" ~/.cursor/skills/tencentmap-miniprogram-skill
   ```
-- Or copy the `tencentmap-miniprogram-skill` folder into `~/.cursor/skills/`.
+- Or copy this repo folder into `~/.cursor/skills/` and rename it to `tencentmap-miniprogram-skill`.
 
 **CodeBuddy**
 
 - Skills directory is usually: `~/.codebuddy/skills/`
 - Register via symlink (recommended):
   ```bash
-  ln -sfn "$(pwd)/tencentmap-miniprogram-skill" ~/.codebuddy/skills/tencentmap-miniprogram-skill
+  ln -sfn "$(pwd)" ~/.codebuddy/skills/tencentmap-miniprogram-skill
   ```
-- Or copy the `tencentmap-miniprogram-skill` folder into `~/.codebuddy/skills/`.
+- Or copy this repo folder into `~/.codebuddy/skills/` and rename it to `tencentmap-miniprogram-skill`.
 
 ### 3. Use it in chat
 
@@ -58,17 +58,18 @@ When your questions mention "Tencent Map", "WeChat Mini Program", "mini program 
 
 ```
 .
-├── tencentmap-miniprogram-skill/          # Tencent Map Mini Program skill
-│   ├── SKILL.md               # Skill entry and index
-│   ├── quick_start_and_best_practices.md  # Quick start guide and best practices
-│   ├── assets/                # Example projects and SDK libraries
-│   │   ├── examples/          # Complete mini program example projects
-│   │   └── libs/              # Tencent Location Service SDK
-│   └── references/            # API reference docs
-│       ├── map_component_guide.md          # Map component documentation
-│       ├── mapContext_api/     # MapContext API documentation (32 APIs)
-│       ├── wx_location_api/    # WeChat location API documentation (12 APIs)
-│       └── lbs_service_guide/  # Tencent Location Service documentation (9 APIs)
+├── SKILL.md               # Skill entry and index
+├── quick_start_and_best_practices.md  # Quick start guide and best practices
+├── tempkey-guide.md       # Temporary key application guide
+├── scripts/               # Helper scripts (temp key applying, etc.)
+├── assets/                # Example projects and SDK libraries
+│   ├── examples/          # Complete mini program example projects
+│   └── libs/              # Tencent Location Service SDK
+├── references/            # API reference docs
+│   ├── map_component_guide.md          # Map component documentation
+│   ├── mapContext_api/     # MapContext API documentation (32 APIs)
+│   ├── wx_location_api/    # WeChat location API documentation (12 APIs)
+│   └── lbs_service_guide/  # Tencent Location Service documentation (9 APIs)
 └── README.md
 ```
 
